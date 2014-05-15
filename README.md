@@ -28,7 +28,7 @@ This plugin provides a simple circular countdown timer with customizable setting
 
 3. Call the plugin:
 
-```javascript
+  ```javascript
   $("#countdown").countdown360({
     radius      : 60.5,
     seconds     : 5,
@@ -38,9 +38,9 @@ This plugin provides a simple circular countdown timer with customizable setting
     fontSize    : 50,
     fontColor   : '#FFFFFF',
     autostart: false,
-     onComplete  : function () { console.log('completed') }
-   }).start()
-```
+    onComplete  : function () { console.log('completed') }
+  }).start()
+  ```
 	
 ## Default Options
 
