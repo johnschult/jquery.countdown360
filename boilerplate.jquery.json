@@ -1,0 +1,39 @@
+{
+	"name": "jquery.countdown360",
+	"title": "jQuery countdown360",
+	"description": "A simple circular countdown timer in seconds",
+	"keywords": [
+		"jquery",
+		"plugin",
+		"countdown",
+		"timer",
+		"circular",
+		"jquery-plugin"
+	],
+	"version": "0.1",
+	"author": {
+		"name": "John Schult",
+		"email": "john@schult.us",
+		"url": "https://github.com/johnschult"
+	},
+	"maintainers": [
+		{
+			"name": "John Schult",
+			"email": "john@schult.us",
+			"url": "https://github.com/johnschult"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://johnschult.mit-license.org/"
+		}
+	],
+	"bugs": "https://github.com/johnschult/jquery.countdown360/issues",
+	"homepage": "https://github.com/johnschult/jquery.countdown360",
+	"docs": "https://github.com/johnschult/jquery.countdown360#readme",
+	"download": "https://github.com/johnschult/jquery.countdown360/archive/master.zip",
+	"dependencies": {
+		"jquery": ">=1.4"
+	}
+}

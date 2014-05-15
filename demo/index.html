@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>countdown360</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../src/jquery.countdown360.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="countdown"></div>
+			<script type="text/javascript" charset="utf-8">
+		   $("#countdown").countdown360({
+       	 radius      : 60.5,
+         seconds     : 5,
+       	 strokeWidth : 15,
+         fillColor   : '#0276FD',
+         strokeColor : '#003F87',
+         fontSize    : 50,
+         fontColor   : '#FFFFFF',
+         autostart   : false,
+         onComplete  : function () { console.log('done') }
+		   }).start()
+		  </script>
+		</div>
+	</body>
+</html>
+

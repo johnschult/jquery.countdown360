@@ -1,0 +1,19 @@
+{
+	"name": "jquery.countdown360",
+	"version": "0.1",
+	"homepage": "http://jqueryboilerplate.com",
+	"authors": [
+		"John Schult <john@schult.us>"
+	],
+	"description": "A simple circular countdown timer in seconds",
+	"main": "src/jquery.countdown360.js",
+	"keywords": [
+		"jquery",
+		"plugin",
+		"countdown",
+		"timer",
+		"circular",
+		"jquery-plugin"
+	],
+	"license": "MIT"
+}
