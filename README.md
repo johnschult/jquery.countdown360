@@ -41,9 +41,11 @@ This plugin provides a simple circular countdown timer with customizable setting
      onComplete  : function () { console.log('completed') }
    }).start()
 	```
-## Options
-
-      radius: 15.5,               // radius of arc
+	
+## Default Options
+    ```javascript
+    {
+	  radius: 15.5,               // radius of arc
       strokeWidth: 3,             // the width of the stroke
       strokeColor: "#477050",     // the color of the stroke
       fillColor: "#8ac575",       // the fill color
@@ -54,6 +56,8 @@ This plugin provides a simple circular countdown timer with customizable setting
       autostart: true,            // start the countdown automatically
       seconds: 10,                // the number of seconds to count down
       onComplete: undefined
+    }
+    ```
 
 ## License
 
