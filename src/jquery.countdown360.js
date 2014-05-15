@@ -29,8 +29,8 @@
     defaults = {
       radius: 15.5,               // radius of arc
       strokeWidth: 3,             // the width of the stroke
-      strokeColor: "#477050",     // the color of the stroke
-      fillColor: "#8ac575",       // the fill color
+      strokeStyle: "#477050",     // the color of the stroke
+      fillStyle: "#8ac575",       // the fill color
       fontColor: "#477050",       // the font color
       fontFamily: "sans-serif",   // the font family
       fontSize: 20,               // the font size
@@ -82,8 +82,8 @@
     __initPen: function (canvas) {
       this.pen          = canvas.getContext("2d");
       this.pen.lineWidth     = this.settings.strokeWidth;
-      this.pen.strokeStyle   = this.settings.strokeColor;
-      this.pen.fillStyle     = this.settings.fillColor;
+      this.pen.strokeStyle   = this.settings.strokeStyle;
+      this.pen.fillStyle     = this.settings.fillStyle;
       this.pen.font          = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
       this.pen.textAlign     = "center";
       this.pen.textBaseline  = "middle";
@@ -100,7 +100,7 @@
     },
 
     __drawCountdownShape: function (endAngle, drawStroke) {
-      this.pen.fillStyle = this.settings.fillColor;
+      this.pen.fillStyle = this.settings.fillStyle;
       this.pen.beginPath();
       this.pen.arc(this.settings.arcX, this.settings.arcY, this.settings.radius, Math.PI*1.5, endAngle, false);
       this.pen.fill();
