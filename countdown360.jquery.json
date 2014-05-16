@@ -1,16 +1,17 @@
 {
 	"name": "countdown360",
 	"title": "Countdown 360",
-	"description": "A simple circular countdown timer in seconds",
+	"description": "This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.",
 	"keywords": [
-		"jquery",
-		"plugin",
+		"clock",
+		"circular",
 		"countdown",
 		"timer",
-		"circular",
-		"jquery-plugin"
+		"jquery",
+		"jquery-plugin",
+		"plugin"
 	],
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"author": {
 		"name": "John Schult",
 		"email": "john@schult.us",
