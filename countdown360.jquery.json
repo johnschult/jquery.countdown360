@@ -10,7 +10,7 @@
 		"circular",
 		"jquery-plugin"
 	],
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": {
 		"name": "John Schult",
 		"email": "john@schult.us",
@@ -31,6 +31,7 @@
 	],
 	"bugs": "https://github.com/johnschult/jquery.countdown360/issues",
 	"homepage": "https://github.com/johnschult/jquery.countdown360",
+	"demo": "http://jsfiddle.net/johnschult/gs3WY/",
 	"docs": "https://github.com/johnschult/jquery.countdown360#readme",
 	"download": "https://github.com/johnschult/jquery.countdown360/archive/master.zip",
 	"dependencies": {
