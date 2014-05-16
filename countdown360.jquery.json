@@ -1,6 +1,6 @@
 {
-	"name": "jquery.countdown360",
-	"title": "jQuery countdown360",
+	"name": "countdown360",
+	"title": "Countdown 360",
 	"description": "A simple circular countdown timer in seconds",
 	"keywords": [
 		"jquery",
@@ -10,7 +10,7 @@
 		"circular",
 		"jquery-plugin"
 	],
-	"version": "0.1",
+	"version": "0.1.0",
 	"author": {
 		"name": "John Schult",
 		"email": "john@schult.us",
