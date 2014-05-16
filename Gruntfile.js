@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 
 		// Import package manifest
-		pkg: grunt.file.readJSON("boilerplate.jquery.json"),
+		pkg: grunt.file.readJSON("countdown360.jquery.json"),
 
 		// Banner definitions
 		meta: {
@@ -28,6 +28,13 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// write bower.json
+		writeBowerJson: {
+		  options: {
+		    bowerJsonTemplate: 'bower-template.json'
+		  }
+		},
+
 		// Lint definitions
 		jshint: {
 			files: ["src/jquery.countdown360.js"],
@@ -50,10 +57,11 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-concat");
+	grunt.loadNpmTasks("grunt-write-bower-json");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 
-	grunt.registerTask("default", ["jshint", "concat", "uglify"]);
+	grunt.registerTask("default", ["jshint", "concat", "writeBowerJson", "uglify"]);
 	grunt.registerTask("travis", ["jshint"]);
 
 };
