@@ -1,5 +1,5 @@
 /*
- *  Countdown 360 - v0.1.2
+ *  Countdown 360 - v0.1.3
  *  This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.
  *  https://github.com/johnschult/jquery.countdown360
  *
@@ -58,19 +58,20 @@
     _getCanvas: function () {
       var $canvas = $("<canvas id=\"countdown360_" + $(this.element).attr("id") + "\" width=\"" +
                       this.settings.width + "\" height=\"" +
-                      this.settings.height + "\"></canvas>");
+                      this.settings.height + "\">" +
+                      "<span id=\"countdown-text\" role=\"status\" aria-live=\"assertive\"></span></canvas>");
       $(this.element).prepend($canvas[0]);
       return $canvas[0];
     },
 
     _initPen: function (canvas) {
-      this.pen          = canvas.getContext("2d");
-      this.pen.lineWidth     = this.settings.strokeWidth;
-      this.pen.strokeStyle   = this.settings.strokeStyle;
-      this.pen.fillStyle     = this.settings.fillStyle;
-      this.pen.font          = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
-      this.pen.textAlign     = "center";
-      this.pen.textBaseline  = "middle";
+      this.pen              = canvas.getContext("2d");
+      this.pen.lineWidth    = this.settings.strokeWidth;
+      this.pen.strokeStyle  = this.settings.strokeStyle;
+      this.pen.fillStyle    = this.settings.fillStyle;
+      this.pen.textAlign    = "center";
+      this.pen.textBaseline = "middle";
+      this.ariaText = $(canvas).children("#countdown-text");
       this._clearRect();
     },
 
@@ -79,8 +80,14 @@
     },
 
     _drawCountdownLabel: function (secondsElapsed) {
-      this.pen.fillStyle = this.settings.fontColor;
-      this.pen.fillText(this.settings.seconds - secondsElapsed, this.settings.width/2, this.settings.height/2);
+      var secondsLeft = this.settings.seconds - secondsElapsed,
+          label = secondsLeft === 1 ? "second" : "seconds";
+      this.ariaText.text(secondsLeft);
+      this.pen.fillStyle    = this.settings.fontColor;
+      this.pen.font         = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
+      this.pen.fillText(secondsLeft, this.settings.width/2, this.settings.height/2 - (this.settings.fontSize/6.2) );
+      this.pen.font = "normal small-caps " + (this.settings.fontSize/3) + "px " + this.settings.fontFamily;
+      this.pen.fillText(label, this.settings.width/2, this.settings.height/2 + (this.settings.fontSize/2.2));
     },
 
     _drawCountdownShape: function (endAngle, drawStroke) {
@@ -121,5 +128,3 @@
   };
 
 })(jQuery, window, document);
-
-

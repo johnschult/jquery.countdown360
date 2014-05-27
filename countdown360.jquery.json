@@ -11,7 +11,7 @@
 		"jquery-plugin",
 		"plugin"
 	],
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"author": {
 		"name": "John Schult",
 		"email": "john@schult.us",
