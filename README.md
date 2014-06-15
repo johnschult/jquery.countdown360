@@ -4,7 +4,7 @@
 
 This plugin provides a simple circular countdown timer with customizable settings.
 
-[Check out a Demo](http://jsfiddle.net/johnschult/9m5bQ/)
+[Check out a Demo](http://jsfiddle.net/johnschult/gs3WY/)
 
 ## Basic Usage
 
