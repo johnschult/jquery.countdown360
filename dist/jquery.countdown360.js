@@ -1,5 +1,5 @@
 /*
- *  Countdown 360 - v0.1.3
+ *  Countdown 360 - v0.1.4
  *  This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.
  *  https://github.com/johnschult/jquery.countdown360
  *
@@ -9,16 +9,18 @@
 ;(function ($, window, document, undefined) {
   var pluginName = "countdown360",
     defaults = {
-      radius: 15.5,               // radius of arc
-      strokeStyle: "#477050",     // the color of the stroke
-      strokeWidth: undefined,     // the stroke width, dynamically calulated if omitted in options
-      fillStyle: "#8ac575",       // the fill color
-      fontColor: "#477050",       // the font color
-      fontFamily: "sans-serif",   // the font family
-      fontSize: undefined,        // the font size, dynamically calulated if omitted in options
-      fontWeight: 700,            // the font weight
-      autostart: true,            // start the countdown automatically
-      seconds: 10,                // the number of seconds to count down
+      radius: 15.5,                    // radius of arc
+      strokeStyle: "#477050",          // the color of the stroke
+      strokeWidth: undefined,          // the stroke width, dynamically calulated if omitted in options
+      fillStyle: "#8ac575",            // the fill color
+      fontColor: "#477050",            // the font color
+      fontFamily: "sans-serif",        // the font family
+      fontSize: undefined,             // the font size, dynamically calulated if omitted in options
+      fontWeight: 700,                 // the font weight
+      autostart: true,                 // start the countdown automatically
+      seconds: 10,                     // the number of seconds to count down
+      label: ["seconds", "seconds"],   // the label to use or false if none
+      startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
       onComplete: undefined
     };
 
@@ -33,6 +35,24 @@
   }
 
   Plugin.prototype = {
+
+    extendTimer: function (value) {
+      var seconds = parseInt(value),
+          secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+      if ((this._secondsLeft(secondsElapsed) + seconds) <= this.settings.seconds) {
+        this.startedAt.setSeconds(this.startedAt.getSeconds() + parseInt(value));
+      }
+    },
+
+    addSeconds: function (value) {
+      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+      if (this.settings.startOverAfterAdding) {
+          this.settings.seconds = this._secondsLeft(secondsElapsed) + parseInt(value);
+          this.start();
+        } else {
+          this.settings.seconds += parseInt(value);
+        }
+    },
 
     start: function () {
       this.startedAt = new Date();
@@ -79,15 +99,28 @@
       this.pen.clearRect(0, 0, this.settings.width, this.settings.height);
     },
 
+    _secondsLeft: function(secondsElapsed) {
+      return this.settings.seconds - secondsElapsed;
+    },
+
     _drawCountdownLabel: function (secondsElapsed) {
-      var secondsLeft = this.settings.seconds - secondsElapsed,
-          label = secondsLeft === 1 ? "second" : "seconds";
       this.ariaText.text(secondsLeft);
       this.pen.fillStyle    = this.settings.fontColor;
       this.pen.font         = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
-      this.pen.fillText(secondsLeft, this.settings.width/2, this.settings.height/2 - (this.settings.fontSize/6.2) );
-      this.pen.font = "normal small-caps " + (this.settings.fontSize/3) + "px " + this.settings.fontFamily;
-      this.pen.fillText(label, this.settings.width/2, this.settings.height/2 + (this.settings.fontSize/2.2));
+      var secondsLeft = this._secondsLeft(secondsElapsed),
+          label = secondsLeft === 1 ? this.settings.label[0] : this.settings.label[1],
+          drawLabel = this.settings.label && this.settings.label.length === 2,
+          x = this.settings.width/2;
+      if (drawLabel) {
+        y = this.settings.height/2 - (this.settings.fontSize/6.2);
+      } else {
+        y = this.settings.height/2;
+      }
+      this.pen.fillText(secondsLeft, x, y);
+      if (drawLabel) {
+        this.pen.font = "normal small-caps " + (this.settings.fontSize/3) + "px " + this.settings.fontFamily;
+        this.pen.fillText(label, this.settings.width/2, this.settings.height/2 + (this.settings.fontSize/2.2));
+      }
     },
 
     _drawCountdownShape: function (endAngle, drawStroke) {
