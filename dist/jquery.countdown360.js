@@ -1,5 +1,5 @@
 /*
- *  Countdown 360 - v0.1.4
+ *  Countdown 360 - v0.1.5
  *  This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.
  *  https://github.com/johnschult/jquery.countdown360
  *
@@ -19,7 +19,7 @@
       fontWeight: 700,                 // the font weight
       autostart: true,                 // start the countdown automatically
       seconds: 10,                     // the number of seconds to count down
-      label: ["seconds", "seconds"],   // the label to use or false if none
+      label: ["second", "seconds"],    // the label to use or false if none
       startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
       onComplete: undefined
     };
