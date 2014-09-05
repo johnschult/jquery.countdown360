@@ -1,6 +1,6 @@
 {
   "name": "countdown360",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "dist/jquery.countdown360.js",
   "ignore": [
     "demo",
