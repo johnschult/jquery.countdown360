@@ -97,7 +97,6 @@
 
     _drawCountdownLabel: function (secondsElapsed) {
       this.ariaText.text(secondsLeft);
-      this.pen.fillStyle    = this.settings.fontColor;
       this.pen.font         = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
       var secondsLeft = this._secondsLeft(secondsElapsed),
           label = secondsLeft === 1 ? this.settings.label[0] : this.settings.label[1],
@@ -108,6 +107,9 @@
       } else {
         y = this.settings.height/2;
       }
+      this.pen.fillStyle = this.settings.fillStyle;
+      this.pen.fillText(secondsLeft + 1, x, y);
+      this.pen.fillStyle  = this.settings.fontColor;
       this.pen.fillText(secondsLeft, x, y);
       if (drawLabel) {
         this.pen.font = "normal small-caps " + (this.settings.fontSize/3) + "px " + this.settings.fontFamily;
