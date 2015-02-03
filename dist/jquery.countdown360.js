@@ -1,28 +1,20 @@
-/*
- *  Countdown 360 - v0.1.6
- *  This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.
- *  https://github.com/johnschult/jquery.countdown360
- *
- *  Made by John Schult
- *  Under MIT License
- */
 ;(function ($, window, document, undefined) {
   var pluginName = "countdown360",
-    defaults = {
-      radius: 15.5,                    // radius of arc
-      strokeStyle: "#477050",          // the color of the stroke
-      strokeWidth: undefined,          // the stroke width, dynamically calulated if omitted in options
-      fillStyle: "#8ac575",            // the fill color
-      fontColor: "#477050",            // the font color
-      fontFamily: "sans-serif",        // the font family
-      fontSize: undefined,             // the font size, dynamically calulated if omitted in options
-      fontWeight: 700,                 // the font weight
-      autostart: true,                 // start the countdown automatically
-      seconds: 10,                     // the number of seconds to count down
-      label: ["second", "seconds"],    // the label to use or false if none
-      startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
-      onComplete: undefined
-    };
+  defaults = {
+    radius: 15.5,                    // radius of arc
+    strokeStyle: "#477050",          // the color of the stroke
+    strokeWidth: undefined,          // the stroke width, dynamically calulated if omitted in options
+    fillStyle: "#8ac575",            // the fill color
+    fontColor: "#477050",            // the font color
+    fontFamily: "sans-serif",        // the font family
+    fontSize: undefined,             // the font size, dynamically calulated if omitted in options
+    fontWeight: 700,                 // the font weight
+    autostart: true,                 // start the countdown automatically
+    seconds: 10,                     // the number of seconds to count down
+    label: ["second", "seconds"],    // the label to use or false if none
+    startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
+    onComplete: undefined
+  };
 
   function Plugin(element, options) {
     this.element = element;
@@ -38,7 +30,7 @@
 
     extendTimer: function (value) {
       var seconds = parseInt(value),
-          secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+      secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
       if ((this._secondsLeft(secondsElapsed) + seconds) <= this.settings.seconds) {
         this.startedAt.setSeconds(this.startedAt.getSeconds() + parseInt(value));
       }
@@ -47,11 +39,17 @@
     addSeconds: function (value) {
       var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
       if (this.settings.startOverAfterAdding) {
-          this.settings.seconds = this._secondsLeft(secondsElapsed) + parseInt(value);
-          this.start();
-        } else {
-          this.settings.seconds += parseInt(value);
-        }
+        this.settings.seconds = this._secondsLeft(secondsElapsed) + parseInt(value);
+        this.start();
+      } else {
+        this.settings.seconds += parseInt(value);
+      }
+    },
+
+    startOverAt: function (value) {
+      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+      this.settings.seconds = parseInt(value);
+      this.start();
     },
 
     start: function () {
@@ -77,9 +75,9 @@
 
     _getCanvas: function () {
       var $canvas = $("<canvas id=\"countdown360_" + $(this.element).attr("id") + "\" width=\"" +
-                      this.settings.width + "\" height=\"" +
-                      this.settings.height + "\">" +
-                      "<span id=\"countdown-text\" role=\"status\" aria-live=\"assertive\"></span></canvas>");
+      this.settings.width + "\" height=\"" +
+      this.settings.height + "\">" +
+      "<span id=\"countdown-text\" role=\"status\" aria-live=\"assertive\"></span></canvas>");
       $(this.element).prepend($canvas[0]);
       return $canvas[0];
     },
@@ -107,9 +105,9 @@
       this.ariaText.text(secondsLeft);
       this.pen.font         = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
       var secondsLeft = this._secondsLeft(secondsElapsed),
-          label = secondsLeft === 1 ? this.settings.label[0] : this.settings.label[1],
-          drawLabel = this.settings.label && this.settings.label.length === 2,
-          x = this.settings.width/2;
+      label = secondsLeft === 1 ? this.settings.label[0] : this.settings.label[1],
+      drawLabel = this.settings.label && this.settings.label.length === 2,
+      x = this.settings.width/2;
       if (drawLabel) {
         y = this.settings.height/2 - (this.settings.fontSize/6.2);
       } else {
@@ -135,7 +133,7 @@
 
     _draw: function () {
       var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000),
-          endAngle = (Math.PI*3.5) - (((Math.PI*2)/this.settings.seconds) * secondsElapsed);
+      endAngle = (Math.PI*3.5) - (((Math.PI*2)/this.settings.seconds) * secondsElapsed);
       this._clearRect();
       this._drawCountdownShape(Math.PI*3.5, false);
       if (secondsElapsed < this.settings.seconds) {
