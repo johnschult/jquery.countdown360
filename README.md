@@ -69,6 +69,7 @@ This plugin provides a simple circular countdown timer with customizable setting
 .stop()              // stops the countdown timer, onComplete is not called
 .extendTimer(secs)   // extends the current timer by backing up by the number of seconds provided
 .addSeconds(secs)    // adds additional seconds to the original timer and restarts if startOverAfterAdding is true
+.startOverAt(secs)    // adds additional seconds to the original timer and restarts
 ```
 
 ## License
