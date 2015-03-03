@@ -71,6 +71,16 @@ This plugin provides a simple circular countdown timer with customizable setting
 .addSeconds(secs)    // adds additional seconds to the original timer and restarts if startOverAfterAdding is true
 ```
 
+## Callbacks
+
+```
+onComplete					// The function defined in this option is called after the timer completes.
+```
+
+## Contributing
+
+[See Contributing](https://github.com/johnschult/jquery.countdown360/blob/master/CONTRIBUTING.md)
+
 ## License
 
 [MIT License](http://johnschult.mit-license.org/) © John Schult
