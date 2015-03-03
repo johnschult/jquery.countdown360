@@ -1,5 +1,7 @@
 # jQuery countdown360
 
+[![Build Status](https://travis-ci.org/johnschult/jquery.countdown360.svg)](https://travis-ci.org/johnschult/jquery.countdown360)
+
 ### A simple countdown timer in seconds
 
 This plugin provides a simple circular countdown timer with customizable settings.
