@@ -11,16 +11,16 @@
 		"jquery-plugin",
 		"plugin"
 	],
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"author": {
 		"name": "John Schult",
-		"email": "john@schult.us",
+		"email": "johnschult@icloud.com",
 		"url": "https://github.com/johnschult"
 	},
 	"maintainers": [
 		{
 			"name": "John Schult",
-			"email": "john@schult.us",
+			"email": "johnschult@icloud.com",
 			"url": "https://github.com/johnschult"
 		}
 	],

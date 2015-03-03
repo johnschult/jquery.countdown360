@@ -58,7 +58,7 @@ This plugin provides a simple circular countdown timer with customizable setting
 	seconds: 10,                     // the number of seconds to count down
 	label: ["second", "seconds"],   // the label to use or false if none, first is singular form, second is plural
 	startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
-	onComplete: undefined
+	onComplete: function () {}
 }
 ```
 

@@ -13,7 +13,7 @@
       seconds: 10,                     // the number of seconds to count down
       label: ["second", "seconds"],    // the label to use or false if none
       startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
-      onComplete: undefined
+      onComplete: function () {}
     };
 
   function Plugin(element, options) {
