@@ -4,6 +4,8 @@
 
 This plugin provides a simple circular countdown timer with customizable settings.
 
+<iframe width="100%" height="300" src="//jsfiddle.net/gs3WY/355/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 [Check out a Demo](http://jsfiddle.net/johnschult/gs3WY/)
 
 ## Basic Usage
