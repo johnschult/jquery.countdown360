@@ -1,6 +1,7 @@
 # jQuery countdown360
 
 [![Build Status](https://travis-ci.org/johnschult/jquery.countdown360.svg)](https://travis-ci.org/johnschult/jquery.countdown360)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/johnschult/jquery.countdown360?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ### A simple countdown timer in seconds
 
