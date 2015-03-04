@@ -36,14 +36,17 @@
       }
     },
 
-    addSeconds: function (value) {
-      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+    addSeconds : function (value) {
       if (this.settings.startOverAfterAdding) {
-          this.settings.seconds = this._secondsLeft(secondsElapsed) + parseInt(value);
+          this.settings.seconds = this._secondsLeft(this.secondsElapsed) + parseInt(value);
           this.start();
         } else {
           this.settings.seconds += parseInt(value);
         }
+    },
+
+    getSecondsElapsed: function () {
+      return this.secondsElapsed;
     },
 
     start: function () {
@@ -64,6 +67,7 @@
       this.settings.arcX = this.settings.radius + this.settings.strokeWidth;
       this.settings.arcY = this.settings.arcX;
       this._initPen(this._getCanvas());
+      this.secondsElapsed = 0;
       if (this.settings.autostart) { this.start(); }
     },
 
@@ -91,17 +95,17 @@
       this.pen.clearRect(0, 0, this.settings.width, this.settings.height);
     },
 
-    _secondsLeft: function(secondsElapsed) {
-      return this.settings.seconds - secondsElapsed;
+    _secondsLeft: function() {
+      return this.settings.seconds - this.secondsElapsed;
     },
 
-    _drawCountdownLabel: function (secondsElapsed) {
-      this.ariaText.text(secondsLeft);
+    _drawCountdownLabel: function () {
       this.pen.font         = this.settings.fontWeight + " " + this.settings.fontSize + "px " + this.settings.fontFamily;
-      var secondsLeft = this._secondsLeft(secondsElapsed),
+      var secondsLeft = this._secondsLeft(),
           label = secondsLeft === 1 ? this.settings.label[0] : this.settings.label[1],
           drawLabel = this.settings.label && this.settings.label.length === 2,
           x = this.settings.width/2;
+      this.ariaText.text(secondsLeft);
       if (drawLabel) {
         y = this.settings.height/2 - (this.settings.fontSize/6.2);
       } else {
@@ -126,14 +130,15 @@
     },
 
     _draw: function () {
-      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000),
-          endAngle = (Math.PI*3.5) - (((Math.PI*2)/this.settings.seconds) * secondsElapsed);
+      this.secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000),
+          endAngle = (Math.PI*3.5) - (((Math.PI*2)/this.settings.seconds) * this.secondsElapsed);
       this._clearRect();
       this._drawCountdownShape(Math.PI*3.5, false);
-      if (secondsElapsed < this.settings.seconds) {
+      if (this.secondsElapsed < this.settings.seconds) {
         this._drawCountdownShape(endAngle, true);
-        this._drawCountdownLabel(secondsElapsed);
+        this._drawCountdownLabel();
       } else {
+        this.secondsElapsed = this.settings.seconds;
         this._drawCountdownLabel(this.settings.seconds);
         this.stop();
         this.settings.onComplete();
