@@ -27,7 +27,16 @@
   }
 
   Plugin.prototype = {
-
+    getTimeRemaining: function()
+    {
+      var elapsed = this.getElapsedTime();
+      var timeRemaining = this._secondsLeft(elapsed);
+      return  timeRemaining;
+    },
+    getElapsedTime: function()
+    {
+      return  Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+    },
     extendTimer: function (value) {
       var seconds = parseInt(value),
           secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
