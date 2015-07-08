@@ -29,8 +29,8 @@
   Plugin.prototype = {
     getTimeRemaining: function()
     {
-      var elapsed = this.getElapsedTime();
-      var timeRemaining = this._secondsLeft(elapsed);
+    
+      var timeRemaining = this._secondsLeft(this.getElapsedTime());
       return  timeRemaining;
     },
     getElapsedTime: function()
