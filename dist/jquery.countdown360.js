@@ -1,5 +1,5 @@
 /*
- *  Countdown 360 - v0.1.7
+ *  Countdown 360 - v0.1.8
  *  This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.
  *  https://github.com/johnschult/jquery.countdown360
  *
@@ -35,7 +35,16 @@
   }
 
   Plugin.prototype = {
-
+    getTimeRemaining: function()
+    {
+    
+      var timeRemaining = this._secondsLeft(this.getElapsedTime());
+      return  timeRemaining;
+    },
+    getElapsedTime: function()
+    {
+      return  Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+    },
     extendTimer: function (value) {
       var seconds = parseInt(value),
           secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
