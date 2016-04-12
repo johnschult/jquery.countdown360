@@ -64,6 +64,7 @@
     start: function () {
       this.startedAt = new Date();
       this._clearRect();
+      // if increase, before start, don't draw stroke, and true means first time call _drawCountdownShape function.
       this._drawCountdownShape(Math.PI * 3.5, !this.settings.strokeIncrease, true);
       this._drawCountdownLabel(0);
       this.interval = setInterval(jQuery.proxy(this._draw, this), 1000);
@@ -138,7 +139,17 @@
     },
 
     _drawCountdownShape: function (endAngle, drawStroke, first) {
+      // base on true table, we can get this flag value.
+      // clockwise    increase    first   flag in first   drawStroke    flag in drawStroke
+      // true         true        true    false           false-true    false
+      // true         false       true    false           false-true    false-true
+      // false        true        true    false           false-true    false-true
+      // false        false       true    false           false-true    false
+      // so first time the flag should be false to draw the content.
+      // if clockwise and increase are the same, flag should be false.
+      // if clockwise and increase are different, flag should be same as drawStroke.
       var flag = !first && (this.settings.clockwise !== this.settings.strokeIncrease) && drawStroke;
+
       this.pen.fillStyle = this.settings.fillStyle;
       this.pen.beginPath();
       this.pen.arc(this.settings.arcX, this.settings.arcY, this.settings.radius, Math.PI * 1.5, endAngle, flag);
@@ -150,6 +161,7 @@
 
     _draw: function () {
       var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime()) / 1000),
+        // calculate countdown circle and stroke direction
         endAngle = Math.PI * 1.5 + (this.settings.clockwise ? 1 : -1) * (((Math.PI * 2) / this.settings.seconds) * secondsElapsed);
       this._clearRect();
       this._drawCountdownShape(Math.PI * 3.5, false);
@@ -157,6 +169,7 @@
         this._drawCountdownShape(endAngle, true);
         this._drawCountdownLabel(secondsElapsed);
       } else {
+        // if increase stroke, after countdown, the stroke should be rendered.
         if (this.settings.strokeIncrease) {
           this._drawCountdownShape(endAngle, true);
         }
