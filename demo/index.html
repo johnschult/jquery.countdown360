@@ -15,12 +15,13 @@
 			<script type="text/javascript" charset="utf-8">
 
 		 	var countdown =  $("#countdown").countdown360({
-       	 	radius      : 60,
-         	seconds     : 30,
-         	fontColor   : '#FFFFFF',
-         	autostart   : false,
-        strokeIncrease: false,
-         	onComplete  : function () { console.log('done') }
+       	 	radius        : 60,
+         	seconds       : 5,
+         	fontColor     : '#FFFFFF',
+         	autostart     : false,
+          strokeIncrease: false,
+          clockwise     : true,
+         	onComplete    : function () { console.log('done') }
 		   });
 			countdown.start();
 			console.log('countdown360 ',countdown);
