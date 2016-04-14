@@ -13,6 +13,7 @@
       seconds: 10,                     // the number of seconds to count down
       label: ["second", "seconds"],    // the label to use or false if none
       startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
+      smooth: false,                   // should the timer be smooth or stepping
       onComplete: function () {}
     };
 
@@ -31,7 +32,7 @@
     {
     
       var timeRemaining = this._secondsLeft(this.getElapsedTime());
-      return  timeRemaining;
+      return timeRemaining;
     },
     getElapsedTime: function()
     {
@@ -59,7 +60,11 @@
       this.startedAt = new Date();
       this._drawCountdownShape(Math.PI*3.5, true);
       this._drawCountdownLabel(0);
-      this.interval = setInterval(jQuery.proxy(this._draw, this), 1000);
+      var timerInterval = 1000;
+      if (this.settings.smooth) {
+        timerInterval = 16;
+      }
+      this.interval = setInterval(jQuery.proxy(this._draw, this), timerInterval);
     },
 
     stop: function (cb) {
@@ -135,8 +140,9 @@
     },
 
     _draw: function () {
-      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000),
-          endAngle = (Math.PI*3.5) - (((Math.PI*2)/this.settings.seconds) * secondsElapsed);
+      var millisElapsed = new Date().getTime() - this.startedAt.getTime();
+      var secondsElapsed = Math.floor((millisElapsed)/1000);
+        endAngle = (Math.PI*3.5) - (((Math.PI*2)/(this.settings.seconds * 1000)) * millisElapsed);
       this._clearRect();
       this._drawCountdownShape(Math.PI*3.5, false);
       if (secondsElapsed < this.settings.seconds) {
