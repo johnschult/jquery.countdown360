@@ -140,8 +140,9 @@
     },
 
     _draw: function () {
-      var millisElapsed = new Date().getTime() - this.startedAt.getTime();
-      var secondsElapsed = Math.floor((millisElapsed)/1000);
+      var millisElapsed, secondsElapsed;
+      millisElapsed = new Date().getTime() - this.startedAt.getTime();
+      secondsElapsed = Math.floor((millisElapsed)/1000);
         endAngle = (Math.PI*3.5) - (((Math.PI*2)/(this.settings.seconds * 1000)) * millisElapsed);
       this._clearRect();
       this._drawCountdownShape(Math.PI*3.5, false);
