@@ -49,7 +49,7 @@ This plugin provides a simple circular countdown timer with customizable setting
 
 ```javascript
 {
-  radius: 15.5,                    // radius of arc
+	radius: 15.5,                    // radius of arc
 	strokeStyle: "#477050",          // the color of the stroke
 	strokeWidth: undefined,          // the stroke width, dynamically calulated if omitted in options
 	fillStyle: "#8ac575",            // the fill color
@@ -59,8 +59,9 @@ This plugin provides a simple circular countdown timer with customizable setting
 	fontWeight: 700,                 // the font weight
 	autostart: true,                 // start the countdown automatically
 	seconds: 10,                     // the number of seconds to count down
-	label: ["second", "seconds"],   // the label to use or false if none, first is singular form, second is plural
+	label: ["second", "seconds"],    // the label to use or false if none, first is singular form, second is plural
 	startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
+	smooth: false,                   // update the ticks every 16ms when true
 	onComplete: function () {}
 }
 ```
