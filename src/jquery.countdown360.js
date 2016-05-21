@@ -11,6 +11,7 @@
       fontWeight: 700,                 // the font weight
       autostart: true,                 // start the countdown automatically
       seconds: 10,                     // the number of seconds to count down
+      timeformat: 'SS',                // the time format
       label: ["second", "seconds"],    // the label to use or false if none
       startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
       smooth: false,                   // should the timer be smooth or stepping
@@ -124,12 +125,27 @@
       this.pen.fillStyle = this.settings.fillStyle;
       this.pen.fillText(secondsLeft + 1, x, y);
       this.pen.fillStyle  = this.settings.fontColor;
-      this.pen.fillText(secondsLeft, x, y);
+      this.pen.fillText(this._timeFormat(secondsLeft, this.settings.timeformat), x, y);
       if (drawLabel) {
         this.pen.font = "normal small-caps " + (this.settings.fontSize/3) + "px " + this.settings.fontFamily;
         this.pen.fillText(label, this.settings.width/2, this.settings.height/2 + (this.settings.fontSize/2.2));
       }
     },
+    
+    _timeFormat: function (secondsLeft, format) {
+      switch(format) {
+      case 'MMSS':
+        var minutes = Math.floor(secondsLeft / 60);
+        var seconds = secondsLeft - (minutes * 60);
+        if (minutes < 10) {minutes = "0"+minutes;}
+        if (seconds < 10) {seconds = "0"+seconds;}
+        return minutes+':'+seconds;
+      case 'SS':
+        return secondsLeft;
+      default:
+        return secondsLeft;     
+      }
+    },    
 
     _drawCountdownShape: function (endAngle, drawStroke) {
       this.pen.fillStyle = this.settings.fillStyle;
