@@ -64,7 +64,7 @@ This plugin provides a simple circular countdown timer with customizable setting
 	label: ["second", "seconds"],    // the label to use or false if none, first is singular form, second is plural
 	startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
 	smooth: false,                   // update the ticks every 16ms when true
-	clockwise: false,                // clockwise removal of stroke
+	clockwise: false,                // clockwise removal of stroke 
 	onComplete: function () {}
 }
 ```
