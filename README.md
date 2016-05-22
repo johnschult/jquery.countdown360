@@ -59,10 +59,12 @@ This plugin provides a simple circular countdown timer with customizable setting
 	fontWeight: 700,                 // the font weight
 	autostart: true,                 // start the countdown automatically
 	seconds: 10,                     // the number of seconds to count down
-	timeformat: 'SS',                // the time format
+	remainingSeconds: undefined,     // optional number of seconds to skip ahead on start, if omitted timer will start at the value of 'seconds'	
+	timeformat: 'SS',                // the time format, use "MMSS" for MM:SS format (e.g.: 07:21) 
 	label: ["second", "seconds"],    // the label to use or false if none, first is singular form, second is plural
 	startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
 	smooth: false,                   // update the ticks every 16ms when true
+	clockwise: false,                // clockwise removal of stroke
 	onComplete: function () {}
 }
 ```
