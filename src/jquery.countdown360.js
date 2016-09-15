@@ -5,6 +5,7 @@
       strokeStyle: "#477050",          // the color of the stroke
       strokeWidth: undefined,          // the stroke width, dynamically calulated if omitted in options
       fillStyle: "#8ac575",            // the fill color
+      completeFillStyle: '#FF9800',
       fontColor: "#477050",            // the font color
       fontFamily: "sans-serif",        // the font family
       fontSize: undefined,             // the font size, dynamically calulated if omitted in options
@@ -121,7 +122,11 @@
       } else {
         y = this.settings.height/2;
       }
-      this.pen.fillStyle = this.settings.fillStyle;
+      if ( secondsLeft ==0) {
+          this.pen.fillStyle = this.settings.completeFillStyle;
+      } else {
+          this.pen.fillStyle = this.settings.fillStyle;
+      }
       this.pen.fillText(secondsLeft + 1, x, y);
       this.pen.fillStyle  = this.settings.fontColor;
       this.pen.fillText(secondsLeft, x, y);
@@ -131,8 +136,11 @@
       }
     },
 
-    _drawCountdownShape: function (endAngle, drawStroke) {
+    _drawCountdownShape: function (endAngle, drawStroke, complete) {
       this.pen.fillStyle = this.settings.fillStyle;
+      if (complete) {
+        this.pen.fillStyle = this.settings.completeFillStyle;
+      }
       this.pen.beginPath();
       this.pen.arc(this.settings.arcX, this.settings.arcY, this.settings.radius, Math.PI*1.5, endAngle, false);
       this.pen.fill();
@@ -147,9 +155,10 @@
       this._clearRect();
       this._drawCountdownShape(Math.PI*3.5, false);
       if (secondsElapsed < this.settings.seconds) {
-        this._drawCountdownShape(endAngle, true);
+        this._drawCountdownShape(endAngle, true, 0);
         this._drawCountdownLabel(secondsElapsed);
       } else {
+        this._drawCountdownShape(endAngle, false, 1);
         this._drawCountdownLabel(this.settings.seconds);
         this.stop();
         this.settings.onComplete();

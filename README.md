@@ -33,15 +33,16 @@ This plugin provides a simple circular countdown timer with customizable setting
 
   ```javascript
   $("#countdown").countdown360({
-    radius      : 60.5,
-    seconds     : 5,
-    strokeWidth : 15,
-    fillStyle   : '#0276FD',
-    strokeStyle : '#003F87',
-    fontSize    : 50,
-    fontColor   : '#FFFFFF',
-    autostart: false,
-    onComplete  : function () { console.log('completed') }
+    radius            : 60.5,
+    seconds           : 5,
+    strokeWidth       : 15,
+    fillStyle         : '#0276FD',
+    completeFillStyle : '#FF9800',    // the fill colour when timer has finished counting down
+    strokeStyle       : '#003F87',
+    fontSize          : 50,
+    fontColor         : '#FFFFFF',
+    autostart         : false,
+    onComplete        : function () { console.log('completed') }
   }).start()
   ```
 
@@ -52,6 +53,7 @@ This plugin provides a simple circular countdown timer with customizable setting
 	radius: 15.5,                    // radius of arc
 	strokeStyle: "#477050",          // the color of the stroke
 	strokeWidth: undefined,          // the stroke width, dynamically calulated if omitted in options
+        completeFillStyle: '#FF9800',    // the fill colour when timer has finished counting down
 	fillStyle: "#8ac575",            // the fill color
 	fontColor: "#477050",            // the font color
 	fontFamily: "sans-serif",        // the font family
