@@ -14,7 +14,7 @@
       label: ["second", "seconds"],    // the label to use or false if none
       startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
       smooth: false,                   // should the timer be smooth or stepping
-      clockwise: false,
+      clockwise: false,                // should the timer be counterclockwise or clockwise
       onComplete: function () {}
     };
 
