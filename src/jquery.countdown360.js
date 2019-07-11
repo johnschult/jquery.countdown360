@@ -14,6 +14,7 @@
       label: ["second", "seconds"],    // the label to use or false if none
       startOverAfterAdding: true,      // Start the timer over after time is added with addSeconds
       smooth: false,                   // should the timer be smooth or stepping
+      clockwise: false,                // should the timer be counterclockwise or clockwise
       onComplete: function () {}
     };
 
@@ -58,7 +59,7 @@
 
     start: function () {
       this.startedAt = new Date();
-      this._drawCountdownShape(Math.PI*3.5, true);
+      this._drawCountdownShape(Math.PI*3.5, !this.settings.clockwise);
       this._drawCountdownLabel(0);
       var timerInterval = 1000;
       if (this.settings.smooth) {
@@ -143,13 +144,18 @@
       var millisElapsed, secondsElapsed;
       millisElapsed = new Date().getTime() - this.startedAt.getTime();
       secondsElapsed = Math.floor((millisElapsed)/1000);
+      if (this.settings.clockwise) {
+        endAngle = (Math.PI*1.5) + (((Math.PI*2)/(this.settings.seconds * 1000)) * millisElapsed);
+      } else {
         endAngle = (Math.PI*3.5) - (((Math.PI*2)/(this.settings.seconds * 1000)) * millisElapsed);
+      }
       this._clearRect();
-      this._drawCountdownShape(Math.PI*3.5, false);
       if (secondsElapsed < this.settings.seconds) {
+        this._drawCountdownShape(Math.PI*3.5, false);
         this._drawCountdownShape(endAngle, true);
         this._drawCountdownLabel(secondsElapsed);
       } else {
+        this._drawCountdownShape(Math.PI * 3.5, this.settings.clockwise);
         this._drawCountdownLabel(this.settings.seconds);
         this.stop();
         this.settings.onComplete();
