@@ -1,3 +1,11 @@
+/*
+ *  Countdown 360 - v0.1.9
+ *  This is a simple attractive circular countdown timer that counts down a number of seconds. The style is configurable and callbacks are supported on completion.
+ *  https://github.com/johnschult/jquery.countdown360
+ *
+ *  Made by John Schult
+ *  Under MIT License
+ */
 ;(function ($, window, document, undefined) {
   var pluginName = "countdown360",
     defaults = {
@@ -56,6 +64,37 @@
           this.settings.seconds += parseInt(value);
         }
     },
+    
+        removeSeconds: function (value) {
+      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+      if (this.settings.startOverAfterAdding) {
+          this.settings.seconds = this._secondsLeft(secondsElapsed) - parseInt(value);
+          this.start();
+        } else {
+          this.settings.seconds -= parseInt(value);
+        }
+    },
+    
+    setSeconds: function (value) {
+      var secondsElapsed = 0;
+      if (this.settings.startOverAfterAdding) {
+          this.settings.seconds = this._secondsLeft(secondsElapsed) + parseInt(value);
+          this.start();
+        } else {
+          this.settings.seconds += parseInt(value);
+        }
+    },
+    
+        restart: function (value) {
+      var secondsElapsed = Math.round((new Date().getTime() - this.startedAt.getTime())/1000);
+      if (this.settings.startOverAfterAdding) {
+          this.settings.seconds = this._secondsLeft(secondsElapsed) + parseInt(value);
+          this.stop();
+        } else {
+          this.settings.seconds += parseInt(value);
+        }
+    },
+    
 
     start: function () {
       this.startedAt = new Date();
